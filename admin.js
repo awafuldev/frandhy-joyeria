@@ -132,7 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
+  function updateDefaultPassHint() {
+    const hint = document.getElementById('login-default-pass-hint');
+    if (hint) {
+      hint.style.display = FRANDHY_STORE.isDefaultPassword() ? 'block' : 'none';
+    }
+  }
+
   function checkAuth() {
+    updateDefaultPassHint();
     if (FRANDHY_STORE.isAdminAuthed()) {
       loginView.style.display = 'none';
       dashboardView.style.display = 'block';
@@ -701,6 +709,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cfgPassword) cfgPassword.value = '';
     if (cfgPasswordConfirm) cfgPasswordConfirm.value = '';
     checkFirstLoginWarning();
+    updateDefaultPassHint();
   });
 
   function checkFirstLoginWarning() {

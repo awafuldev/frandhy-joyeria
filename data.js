@@ -40,6 +40,7 @@
       logo_url: 'assets/img/logo_frandhy.svg',
       admin_pass_salt: DEFAULT_PASS_SALT,
       admin_pass_hash: DEFAULT_PASS_HASH,
+      custom_password_set: false,
       meta_descripcion: 'Frandhy Joyería en Santiago de los Caballeros. La mina de plata 925: cadenas cubanas Miami, guillos macizos, anillos iced out pavé, dijes con tu nombre calados a láser y orfebrería de alta ley.'
     };
   }
@@ -649,9 +650,9 @@
 
     isDefaultPassword: function () {
       const cfg = this.getConfig();
-      if (cfg.admin_pass_hash === DEFAULT_PASS_HASH) return true;
-      if (!cfg.admin_pass_hash) return true;
-      return false;
+      if (cfg.custom_password_set === true) return false;
+      if (cfg.admin_pass_hash && cfg.admin_pass_hash !== DEFAULT_PASS_HASH) return false;
+      return true;
     },
 
     loginAdmin: async function (pass) {
@@ -663,6 +664,26 @@
           remainingMs: lockout.remainingMs,
           message: 'Acceso bloqueado por seguridad. Demasiados intentos fallidos.'
         };
+      }
+
+      // Si ya se ha configurado una clave personalizada, 'admin123' queda completamente inhabilitada
+      if (!this.isDefaultPassword() && pass === 'admin123') {
+        const newStatus = recordFailedAttempt();
+        if (newStatus.locked) {
+          return {
+            success: false,
+            locked: true,
+            remainingMs: newStatus.remainingMs,
+            message: 'Has alcanzado 5 intentos fallidos. Panel bloqueado por 5 minutos por seguridad.'
+          };
+        } else {
+          return {
+            success: false,
+            locked: false,
+            attemptsLeft: newStatus.attemptsLeft,
+            message: 'La contraseña por defecto admin123 ya no es válida. Debes ingresar tu contraseña personalizada.'
+          };
+        }
       }
 
       const cfg = this.getConfig();
@@ -714,6 +735,7 @@
       const cfg = this.getConfig();
       cfg.admin_pass_salt = newSalt;
       cfg.admin_pass_hash = newHash;
+      cfg.custom_password_set = true;
       delete cfg.admin_pass; // Eliminar siempre texto plano
       this.saveConfig(cfg);
       return true;

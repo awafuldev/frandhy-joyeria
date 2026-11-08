@@ -601,6 +601,11 @@
     let currentIndex = 0;
     let timer = null;
 
+    function getIntervalMs() {
+      // 3.2 segundos en celular para que pase ágil y dinámico; 4.5s en desktop
+      return window.innerWidth < 768 ? 3200 : 4500;
+    }
+
     function showSlide(index) {
       if (index >= slides.length) index = 0;
       if (index < 0) index = slides.length - 1;
@@ -623,7 +628,7 @@
       stopAutoSlide();
       timer = setInterval(() => {
         showSlide(currentIndex + 1);
-      }, 5000); // Rotación automática cada 5 segundos si no se interactúa
+      }, getIntervalMs());
     }
 
     function stopAutoSlide() {
@@ -658,8 +663,37 @@
     if (showcase) {
       showcase.addEventListener('mouseenter', stopAutoSlide);
       showcase.addEventListener('mouseleave', startAutoSlide);
-      showcase.addEventListener('touchstart', stopAutoSlide, { passive: true });
-      showcase.addEventListener('touchend', startAutoSlide, { passive: true });
+
+      // Deslizamiento táctil suave y rápido para celulares (Touch Swipe)
+      let touchStartX = 0;
+      let touchStartY = 0;
+
+      showcase.addEventListener('touchstart', (e) => {
+        if (e.touches && e.touches.length > 0) {
+          touchStartX = e.touches[0].clientX;
+          touchStartY = e.touches[0].clientY;
+        }
+        stopAutoSlide();
+      }, { passive: true });
+
+      showcase.addEventListener('touchend', (e) => {
+        if (e.changedTouches && e.changedTouches.length > 0) {
+          const touchEndX = e.changedTouches[0].clientX;
+          const touchEndY = e.changedTouches[0].clientY;
+          const deltaX = touchEndX - touchStartX;
+          const deltaY = touchEndY - touchStartY;
+
+          // Si el movimiento es horizontal y mayor a 30px, cambiar de pieza
+          if (Math.abs(deltaX) > 30 && Math.abs(deltaX) > Math.abs(deltaY)) {
+            if (deltaX < 0) {
+              showSlide(currentIndex + 1); // Deslizar izquierda -> siguiente
+            } else {
+              showSlide(currentIndex - 1); // Deslizar derecha -> anterior
+            }
+          }
+        }
+        startAutoSlide();
+      }, { passive: true });
     }
 
     startAutoSlide();

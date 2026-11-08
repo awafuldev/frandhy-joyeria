@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" width="100%" height="100%">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5d77f"/>
+      <stop offset="35%" stop-color="#d49d37"/>
+      <stop offset="70%" stop-color="#fae39c"/>
+      <stop offset="100%" stop-color="#b88328"/>
+    </linearGradient>
+    <linearGradient id="silverPlate" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="50%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+    <filter id="subtleShadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Diamond Shield & 925 Hallmark Emblem -->
+  <g transform="translate(15, 12)" filter="url(#subtleShadow)">
+    <!-- Outer Octagon Shield -->
+    <polygon points="46,4 88,26 88,72 46,94 4,72 4,26" fill="#141210" stroke="url(#goldGrad)" stroke-width="2.5"/>
+    <polygon points="46,11 81,29 81,68 46,86 11,68 11,29" fill="none" stroke="url(#goldGrad)" stroke-width="0.8" stroke-dasharray="2 2" opacity="0.6"/>
+    
+    <!-- 925 Hallmark Center Plate -->
+    <rect x="22" y="38" width="48" height="22" rx="4" fill="#1f1c18" stroke="url(#goldGrad)" stroke-width="1.5"/>
+    <text x="46" y="54" font-family="'Cinzel', Georgia, serif" font-size="14" font-weight="900" fill="url(#goldGrad)" text-anchor="middle" letter-spacing="1.5">
+      925
+    </text>
+
+    <!-- Star Sparkle Top -->
+    <circle cx="46" cy="24" r="2.5" fill="#ffffff"/>
+  </g>
+
+  <!-- Typography: FRANDHY JOYERÍA -->
+  <g transform="translate(122, 60)">
+    <text font-family="'Cinzel', 'Playfair Display', Georgia, serif" font-size="34" font-weight="700" letter-spacing="4" fill="url(#goldGrad)">
+      FRANDHY
+    </text>
+    <text x="210" font-family="'Cinzel', 'Playfair Display', Georgia, serif" font-size="24" font-weight="400" letter-spacing="5" fill="#f5f0ea">
+      JOYERÍA
+    </text>
+  </g>
+
+  <!-- Subtitle: LA MINA DE PLATA 925 · SANTIAGO, R.D. -->
+  <g transform="translate(124, 88)">
+    <line x1="0" y1="-8" x2="360" y2="-8" stroke="url(#goldGrad)" stroke-width="0.8" opacity="0.4"/>
+    <text font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10.5" font-weight="600" letter-spacing="4" fill="#c2ab87" text-transform="uppercase">
+      LA MINA DE PLATA 925 &bull; SANTIAGO, R.D.
+    </text>
+  </g>
+</svg>

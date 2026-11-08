@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Frandhy Joyería | "La Mina de Plata 925" · Taller de Joyas & Plata Ley 925 Italiana · Santiago de los Caballeros, RD</title>
+  <meta name="description" content="Frandhy Joyería en Santiago de los Caballeros. Especialistas en cadenas cubanas Miami, guillos macizos, anillos pavé, dijes con tu nombre calados a mano y orfebrería de alta ley en auténtica Plata 925 Italiana.">
+  <meta name="theme-color" content="#141210">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Frandhy Joyería · La Mina de Plata 925 (Santiago, RD)">
+  <meta property="og:description" content="Taller de orfebrería, fabricación, compra y venta de joyas en plata ley 925 italiana maciza en Calle 30 de Marzo, Santiago.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/img/logo_frandhy.png">
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <!-- Google Fonts: Cinzel + Marcellus + Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Marcellus&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos Maestros (Alto Contraste Warm Ivory Marble & Rich Espresso / Amber Gold) -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ====================================================================
+       TOP BROADCAST BAR (ALTO CONTRASTE)
+       ==================================================================== -->
+  <div class="top-bar">
+    <div class="top-bar-inner">
+      <div class="top-pill">
+        <i class="fa-solid fa-gem" style="font-size: 10px;"></i>
+        <span>La Mina de Plata 925 &bull; Taller Propio de Orfebrería</span>
+      </div>
+      <div class="top-bar-item-hide">
+        <i class="fa-solid fa-location-dot" style="color:var(--gold-light); margin-right:4px;"></i>
+        <span>Santiago de los Caballeros &bull; Calle 30 de Marzo, Plaza 30 de Marzo Local B</span>
+      </div>
+      <div>
+        <span class="top-rate">WhatsApp: (829) 370-7605</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       STICKY NAVBAR (ESPRESSO GLASS)
+       ==================================================================== -->
+  <header class="site-nav" id="site-nav">
+    <div class="nav-inner">
+      <!-- Logo & Brand Wordmark -->
+      <a href="#inicio" class="nav-logo" aria-label="Frandhy Joyería — La Mina de Plata 925">
+        <img src="assets/img/logo_frandhy.png" alt="Frandhy Joyería" class="logo-img">
+        <div class="logo-brand-wrap">
+          <span class="logo-brand-title">FRANDHY</span>
+          <span class="logo-brand-subtitle">LA MINA DE PLATA 925</span>
+        </div>
+      </a>
+
+      <!-- Desktop Links -->
+      <nav class="nav-links">
+        <a href="#inicio" class="nav-link active">Inicio</a>
+        <a href="#catalogo" class="nav-link">Catálogo 925</a>
+        <a href="#taller" class="nav-link">Taller a Medida</a>
+        <a href="#contacto" class="nav-link">Ubicación</a>
+      </nav>
+
+      <!-- Actions -->
+      <div class="nav-actions">
+        <!-- Direct Link to Admin Panel -->
+        <a href="admin.html" class="nav-icon-btn nav-admin-link" title="Panel Administrativo" aria-label="Panel Administrativo" target="_blank">
+          <i class="fa-solid fa-shield-halved"></i>
+        </a>
+
+        <!-- Search Button -->
+        <button type="button" class="nav-icon-btn" id="nav-search-btn" aria-label="Buscar en el catálogo">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <!-- Bag Button -->
+        <button type="button" class="nav-icon-btn" id="cart-toggle-btn" aria-label="Ver bolsa de compras">
+          <i class="fa-solid fa-bag-shopping"></i>
+          <span class="bag-counter">0</span>
+        </button>
+
+        <!-- Direct WhatsApp CTA -->
+        <a href="https://wa.me/18293707605?text=Hola%20Frandhy%20Joyer%C3%ADa,%20deseo%20consultar%20sobre%20su%20cat%C3%A1logo%20de%20piezas%20en%20plata%20925." 
+           target="_blank" rel="noopener" class="nav-wa-btn">
+          <i class="fa-brands fa-whatsapp"></i>
+          <span>WhatsApp</span>
+        </a>
+
+        <!-- Mobile Hamburger -->
+        <button type="button" class="nav-hamburger" id="mob-toggle-btn" aria-label="Abrir menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Expandable Search Bar -->
+    <div class="nav-search-bar" id="nav-search-bar">
+      <div class="search-input-wrap">
+        <i class="fa-solid fa-magnifying-glass search-ico"></i>
+        <input type="search" id="search-input" placeholder="Buscar cadena cubana, guillo, anillo pavé, dije con nombre, aretes..." autocomplete="off">
+        <button type="button" class="search-clear-btn" id="search-clear-btn" style="display:none;" aria-label="Limpiar búsqueda">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====================================================================
+       MOBILE DRAWER
+       ==================================================================== -->
+  <div class="mob-overlay" id="mob-overlay"></div>
+  <aside class="mob-drawer" id="mob-drawer">
+    <div class="mob-head">
+      <div class="nav-logo">
+        <img src="assets/img/logo_frandhy.png" alt="Frandhy Joyería" class="logo-img" style="height:42px; width:auto;">
+        <div class="logo-brand-wrap">
+          <span class="logo-brand-title" style="font-size:17px;">FRANDHY</span>
+          <span class="logo-brand-subtitle" style="font-size:7.5px;">LA MINA DE PLATA 925</span>
+        </div>
+      </div>
+      <button type="button" class="mob-close-btn" id="mob-close-btn" aria-label="Cerrar menú">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <nav class="mob-nav">
+      <div class="mob-section-tag">Navegación</div>
+      <a href="#inicio" class="mob-nav-link" data-close-mob><i class="fa-solid fa-house"></i>Inicio</a>
+      <a href="#catalogo" class="mob-nav-link" data-close-mob><i class="fa-solid fa-gem"></i>Catálogo de Joyas</a>
+      <a href="#taller" class="mob-nav-link" data-close-mob><i class="fa-solid fa-screwdriver-wrench"></i>Taller &amp; Calado</a>
+      <a href="#contacto" class="mob-nav-link" data-close-mob><i class="fa-solid fa-location-dot"></i>Ubicación &amp; Contacto</a>
+
+      <div style="height:1px; background:var(--bdr-dark-subtle); margin:12px 6px;"></div>
+
+      <div class="mob-section-tag">Gestión del Taller</div>
+      <a href="admin.html" class="mob-nav-link mob-nav-admin" target="_blank">
+        <i class="fa-solid fa-shield-halved"></i>
+        <span>Panel Administrativo</span>
+        <span class="mob-admin-tag">Atelier</span>
+      </a>
+    </nav>
+
+    <div class="mob-foot">
+      <a href="https://wa.me/18293707605?text=Hola%20Frandhy%20Joyer%C3%ADa,%20deseo%20hacer%20una%20consulta." target="_blank" rel="noopener" class="btn-mob-wa">
+        <i class="fa-brands fa-whatsapp"></i> WhatsApp: 829-370-7605
+      </a>
+      <button type="button" class="btn-mob-bag" onclick="window.FRANDHY_APP.openCartDrawer(); document.getElementById('mob-close-btn').click();">
+        <i class="fa-solid fa-bag-shopping"></i> Ver Bolsa (<span id="mob-bag-count">0</span>)
+      </button>
+    </div>
+  </aside>
+
+  <!-- ====================================================================
+       SHOPPING BAG DRAWER
+       ==================================================================== -->
+  <div class="cart-drawer-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-head">
+      <span class="cart-title"><i class="fa-solid fa-bag-shopping" style="color:var(--gold); margin-right:8px;"></i>Tu Bolsa de Joyas</span>
+      <button type="button" class="mob-close-btn" id="cart-close-btn" aria-label="Cerrar bolsa">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <div class="cart-items-wrap" id="cart-items-wrap">
+      <!-- Inyectado por store.js -->
+    </div>
+
+    <div class="cart-foot">
+      <div class="cart-total-row">
+        <span style="color:var(--text-dark-2); font-weight:600;">Subtotal Estimado:</span>
+        <span class="cart-total-price" id="cart-total-price">RD$ 0</span>
+      </div>
+      <button type="button" class="btn-primary" id="cart-checkout-btn" style="width:100%; justify-content:center;">
+        <i class="fa-brands fa-whatsapp"></i> Confirmar Pedido por WhatsApp
+      </button>
+      <p style="font-size:11px; color:var(--text-dark-3); text-align:center; margin-top:10px;">
+        Plata Ley 925 garantizada &bull; Envío asegurado a toda RD y USA
+      </p>
+    </div>
+  </aside>
+
+  <main>
+    <!-- ==================================================================
+         1. HERO SECTION (FULL-BLEED LUXURY CAMPAIGN HERO)
+         ================================================================== -->
+    <section class="hero" id="inicio">
+      <div class="hero-bg-media">
+        <img src="assets/img/hero/cristian_hero_luxury.jpg" alt="Frandhy Joyería — Campaña Plata Ley 925 Italiana" class="hero-bg-img">
+        <div class="hero-vignette"></div>
+      </div>
+
+      <div class="container hero-content-wrap">
+        <div class="hero-inner-grid">
+          <div class="hero-text-col fade-in">
+            <div class="hero-eyebrow-dark">
+              <span class="pulse-dot"></span>
+              <span>TALLER PROPIO &bull; PLATA LEY 925 &bull; SANTIAGO DE LOS CABALLEROS</span>
+            </div>
+
+            <h1 class="hero-main-title">
+              El Brillo Que Define Tu Estilo en <span class="gold-gradient-text">Plata Ley 925 Maciza</span>.
+            </h1>
+
+            <p class="hero-main-desc">
+              Taller orfebre y showroom en Santiago de los Caballeros. Especialistas en cadenas cubanas, guillos macizos, anillos pavé con moissanitas y circones, y confección de dijes con auténtica pureza en Plata 925.
+            </p>
+
+            <div class="hero-actions-group">
+              <a href="#catalogo" class="btn-primary">
+                <i class="fa-solid fa-gem"></i> Explorar Catálogo
+              </a>
+              <a href="https://wa.me/18293707605?text=Hola%20Frandhy%20Joyer%C3%ADa,%20deseo%20cotizar%20una%20pieza%20en%20plata%20925." target="_blank" rel="noopener" class="btn-hero-wa">
+                <i class="fa-brands fa-whatsapp"></i> Hablar con un Orfebre
+              </a>
+            </div>
+
+            <div class="hero-trust-pills">
+              <span><i class="fa-solid fa-certificate"></i>Plata Ley 925 Certificada</span>
+              <span><i class="fa-solid fa-scale-balanced"></i>Pesaje en Balanza Digital</span>
+              <span><i class="fa-solid fa-plane-departure"></i>Envíos Todo RD y USA</span>
+            </div>
+          </div>
+
+          <div class="hero-card-col fade-in">
+            <div class="hero-floating-card">
+              <div class="hero-float-head">
+                <span class="hero-float-title"><i class="fa-solid fa-gem" style="color:var(--gold-light); margin-right:8px;"></i>Atelier Frandhy Joyería</span>
+                <span class="hero-float-status"><i class="fa-solid fa-circle-check"></i> Abierto Hoy</span>
+              </div>
+              <div class="hero-float-body">
+                <p>Fabricación directa y venta en Calle 30 de Marzo, Santiago. Entrega inmediata de piezas en stock o confección personalizada por encargo.</p>
+                <div class="hero-float-stats">
+                  <div class="float-stat-box">
+                    <div class="float-stat-num">Plata 925</div>
+                    <div class="float-stat-lbl">Garantizada</div>
+                  </div>
+                  <div class="float-stat-box">
+                    <div class="float-stat-num">829-370-7605</div>
+                    <div class="float-stat-lbl">WhatsApp Taller</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         1.5. LUXURY INFINITE TICKER MARQUEE (JAXXON & GLD STANDARD)
+         ================================================================== -->
+    <div class="luxury-marquee-ticker" aria-hidden="true">
+      <div class="marquee-track">
+        <div class="marquee-group">
+          <span>PLATA LEY 925 ITALIANA CERTIFICADA</span>
+          <span class="marquee-star">✦</span>
+          <span>TALLER ORFEBRE EN SANTIAGO DE LOS CABALLEROS</span>
+          <span class="marquee-star">✦</span>
+          <span>BALANZA DIGITAL EN VIVO POR WHATSAPP</span>
+          <span class="marquee-star">✦</span>
+          <span>ENVÍOS 24H ASEGURADOS A TODA RD &amp; USA</span>
+          <span class="marquee-star">✦</span>
+          <span>BROCHES DE CAJA CON DOBLE SEGURO</span>
+          <span class="marquee-star">✦</span>
+          <span>CALADO LÁSER Y DISEÑOS PERSONALIZADOS</span>
+          <span class="marquee-star">✦</span>
+          <span>GARANTÍA DE AUTENTICIDAD DE POR VIDA</span>
+          <span class="marquee-star">✦</span>
+        </div>
+        <div class="marquee-group" aria-hidden="true">
+          <span>PLATA LEY 925 ITALIANA CERTIFICADA</span>
+          <span class="marquee-star">✦</span>
+          <span>TALLER ORFEBRE EN SANTIAGO DE LOS CABALLEROS</span>
+          <span class="marquee-star">✦</span>
+          <span>BALANZA DIGITAL EN VIVO POR WHATSAPP</span>
+          <span class="marquee-star">✦</span>
+          <span>ENVÍOS 24H ASEGURADOS A TODA RD &amp; USA</span>
+          <span class="marquee-star">✦</span>
+          <span>BROCHES DE CAJA CON DOBLE SEGURO</span>
+          <span class="marquee-star">✦</span>
+          <span>CALADO LÁSER Y DISEÑOS PERSONALIZADOS</span>
+          <span class="marquee-star">✦</span>
+          <span>GARANTÍA DE AUTENTICIDAD DE POR VIDA</span>
+          <span class="marquee-star">✦</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================================================================
+         2. EDITORIAL CATEGORY TILES (JAXXON & MEJURI "SHOP BY CATEGORY")
+         ================================================================== -->
+    <section class="section-luxury-collections" id="colecciones">
+      <div class="container">
+        <div class="collections-head fade-in">
+          <div class="col-head-left">
+            <span class="luxury-eyebrow"><i class="fa-solid fa-gem"></i> Colecciones Exclusivas</span>
+            <h2 class="collections-title">Explora Por Categoría</h2>
+          </div>
+          <button type="button" class="btn-all-collections" onclick="window.FRANDHY_APP.filterByCategory('todas')">
+            <span>Ver Todo el Catálogo</span> <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+
+        <div class="collections-track fade-in">
+          <!-- Card 1: Cadenas -->
+          <article class="lux-cat-card" data-cat="cadenas" onclick="window.FRANDHY_APP.filterByCategory('cadenas')">
+            <div class="lux-cat-media">
+              <img src="assets/img/categories/cadenas.jpg" alt="Cadenas en Plata Ley 925" loading="lazy">
+              <div class="lux-cat-gradient"></div>
+            </div>
+            <div class="lux-cat-content">
+              <span class="lux-cat-badge">Plata Ley 925</span>
+              <h3 class="lux-cat-name">Cadenas</h3>
+              <span class="lux-cat-action">Explorar <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </article>
+
+          <!-- Card 2: Guillos -->
+          <article class="lux-cat-card" data-cat="guillos" onclick="window.FRANDHY_APP.filterByCategory('guillos')">
+            <div class="lux-cat-media">
+              <img src="assets/img/categories/pulseras.jpg" alt="Guillos y Pulseras Miami" loading="lazy">
+              <div class="lux-cat-gradient"></div>
+            </div>
+            <div class="lux-cat-content">
+              <span class="lux-cat-badge">Broche Caja</span>
+              <h3 class="lux-cat-name">Guillos</h3>
+              <span class="lux-cat-action">Explorar <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </article>
+
+          <!-- Card 3: Anillos -->
+          <article class="lux-cat-card" data-cat="anillos" onclick="window.FRANDHY_APP.filterByCategory('anillos')">
+            <div class="lux-cat-media">
+              <img src="assets/img/categories/anillos.jpg" alt="Anillos y Pavé" loading="lazy">
+              <div class="lux-cat-gradient"></div>
+            </div>
+            <div class="lux-cat-content">
+              <span class="lux-cat-badge">Iced Out</span>
+              <h3 class="lux-cat-name">Anillos</h3>
+              <span class="lux-cat-action">Explorar <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </article>
+
+          <!-- Card 4: Dijes -->
+          <article class="lux-cat-card" data-cat="dijes" onclick="window.FRANDHY_APP.filterByCategory('dijes')">
+            <div class="lux-cat-media">
+              <img src="assets/img/categories/personalizados.jpg" alt="Dijes Calados Personalizados" loading="lazy">
+              <div class="lux-cat-gradient"></div>
+            </div>
+            <div class="lux-cat-content">
+              <span class="lux-cat-badge">Personalizados</span>
+              <h3 class="lux-cat-name">Dijes</h3>
+              <span class="lux-cat-action">Explorar <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </article>
+
+          <!-- Card 5: Aretes -->
+          <article class="lux-cat-card" data-cat="aretes" onclick="window.FRANDHY_APP.filterByCategory('aretes')">
+            <div class="lux-cat-media">
+              <img src="assets/img/categories/aretes.jpg" alt="Aretes y Candongas" loading="lazy">
+              <div class="lux-cat-gradient"></div>
+            </div>
+            <div class="lux-cat-content">
+              <span class="lux-cat-badge">Hipoalergénico</span>
+              <h3 class="lux-cat-name">Aretes</h3>
+              <span class="lux-cat-action">Explorar <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </article>
+
+          <!-- Card 6: Sets -->
+          <article class="lux-cat-card" data-cat="sets" onclick="window.FRANDHY_APP.filterByCategory('sets')">
+            <div class="lux-cat-media">
+              <img src="assets/img/categories/sets.jpg" alt="Sets Coordinados" loading="lazy">
+              <div class="lux-cat-gradient"></div>
+            </div>
+            <div class="lux-cat-content">
+              <span class="lux-cat-badge">Juegos Dúo</span>
+              <h3 class="lux-cat-name">Sets 925</h3>
+              <span class="lux-cat-action">Explorar <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         2.5. CERTIFIED LUXURY HALLMARK BAR (CARTIER / TIFFANY STANDARD)
+         ================================================================== -->
+    <section class="section-hallmark-bar" id="garantia-frandhy">
+      <div class="container">
+        <div class="hallmark-carousel-wrap">
+          <button class="hm-arrow hm-arrow-prev" id="hm-prev" aria-label="Anterior garantía">
+            <i class="fa-solid fa-chevron-left"></i>
+          </button>
+
+          <div class="hallmark-inner fade-in">
+            <div class="hallmark-cell">
+              <div class="hallmark-seal">925</div>
+              <div class="hallmark-text">
+                <strong>Plata Ley 925 Italiana</strong>
+                <span>Sello oficial grabado en cada pieza</span>
+              </div>
+            </div>
+
+            <div class="hallmark-divider"></div>
+
+            <div class="hallmark-cell">
+              <div class="hallmark-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+              <div class="hallmark-text">
+                <strong>Balanza Digital en Vivo</strong>
+                <span>Video pesaje exacto antes del despacho</span>
+              </div>
+            </div>
+
+            <div class="hallmark-divider"></div>
+
+            <div class="hallmark-cell">
+              <div class="hallmark-icon"><i class="fa-solid fa-hammer"></i></div>
+              <div class="hallmark-text">
+                <strong>Taller Propio en Santiago</strong>
+                <span>Calle 30 de Marzo &bull; Joyas a Medida</span>
+              </div>
+            </div>
+
+            <div class="hallmark-divider"></div>
+
+            <div class="hallmark-cell">
+              <div class="hallmark-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="hallmark-text">
+                <strong>Envíos Todo RD y USA</strong>
+                <span>Cobertura 100% asegurada y rastreo</span>
+              </div>
+            </div>
+          </div>
+
+          <button class="hm-arrow hm-arrow-next" id="hm-next" aria-label="Siguiente garantía">
+            <i class="fa-solid fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         4. CATALOG & PRODUCTS (LUMINOUS CANVAS & CRISP WHITE CARDS)
+         ================================================================== -->
+    <section class="section-catalog" id="catalogo">
+      <div class="container">
+        <div class="section-head fade-in">
+          <span class="section-tag">Inventario en Tiempo Real</span>
+          <h2 class="section-title">Piezas Listas para Entrega Inmediata</h2>
+          <p class="section-sub">Selecciona cualquier joya para ver sus especificaciones, peso referencial o pedirla directamente por WhatsApp.</p>
+        </div>
+
+        <!-- Filter Pills Bar -->
+        <div class="catalog-toolbar fade-in">
+          <div class="filter-pills">
+            <button type="button" class="filter-pill active" data-cat="todas">Todas</button>
+            <button type="button" class="filter-pill" data-cat="cadenas">Cadenas</button>
+            <button type="button" class="filter-pill" data-cat="guillos">Guillos</button>
+            <button type="button" class="filter-pill" data-cat="anillos">Anillos</button>
+            <button type="button" class="filter-pill" data-cat="dijes">Dijes</button>
+            <button type="button" class="filter-pill" data-cat="aretes">Aretes</button>
+            <button type="button" class="filter-pill" data-cat="sets">Sets</button>
+          </div>
+          <div class="catalog-counter" id="catalog-count">Cargando inventario...</div>
+        </div>
+
+        <!-- Grid (Exactamente 2 columnas en mobile, 4 en desktop) -->
+        <div class="products-grid" id="products-grid">
+          <!-- Inyectado dinámicamente por store.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         5. TALLER & CUSTOM WORKSHOP (ALTO CONTRASTE OSCURO — ESPRESSO & GOLD)
+         ================================================================== -->
+    <section class="section-workshop" id="taller">
+      <div class="container">
+        <div class="workshop-grid">
+          <div class="workshop-text fade-in">
+            <div class="workshop-badge">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+              <span>Servicio de Calado &amp; Orfebrería Personalizada</span>
+            </div>
+            <h2 class="workshop-title">¿Tienes un diseño o nombre en mente? Nosotros lo calamos y forjamos.</h2>
+            <p class="workshop-desc">
+              En nuestro taller propio de Santiago de los Caballeros contamos con orfebres dedicados a la elaboración de piezas únicas. Tú eliges el estilo de letra, diseño de dije, cadena o combinación con piedras (circones o moissanitas), y lo forjamos con acabados de primera calidad.
+            </p>
+
+            <div class="workshop-steps">
+              <div class="workshop-step">
+                <div class="step-num">1</div>
+                <div class="step-text">
+                  <h4>Envíanos tu idea o nombre</h4>
+                  <p>Mándanos el texto por WhatsApp indicando el estilo de letra y largo de cadena deseado.</p>
+                </div>
+              </div>
+
+              <div class="workshop-step">
+                <div class="step-num">2</div>
+                <div class="step-text">
+                  <h4>Cotización y render previo</h4>
+                  <p>Te mostramos el diseño digital y te calculamos el peso en gramos con precio transparente.</p>
+                </div>
+              </div>
+
+              <div class="workshop-step">
+                <div class="step-num">3</div>
+                <div class="step-text">
+                  <h4>Calado, pulido y entrega</h4>
+                  <p>Fabricamos la pieza, pulimos a espejo y te enviamos fotos y video en balanza antes de la entrega o envío.</p>
+                </div>
+              </div>
+            </div>
+
+            <a href="https://wa.me/18293707605?text=Hola%20Frandhy%20Joyer%C3%ADa,%20quiero%20cotizar%20la%20fabricaci%C3%B3n%20de%20un%20dije%20con%20nombre%20personalizado." target="_blank" rel="noopener" class="btn-primary">
+              <i class="fa-brands fa-whatsapp"></i> Cotizar Mi Nombre por WhatsApp
+            </a>
+          </div>
+
+          <div class="workshop-visual fade-in">
+            <!-- Product showcase interactive carousel -->
+            <div class="workshop-img-showcase">
+              <button type="button" class="workshop-carousel-arrow prev" aria-label="Pieza anterior" id="w-prev"><i class="fa-solid fa-chevron-left"></i></button>
+
+              <div class="workshop-carousel-stage">
+                <img src="assets/img/custom_bp_pendant.png" alt="Dije personalizado con iniciales BP en plata ley 925" class="workshop-pendant-img active" data-index="0" loading="lazy" decoding="async">
+                <img src="assets/img/custom_geminis_pendant.png" alt="Dije personalizado con nombre GEMINIS en plata ley 925" class="workshop-pendant-img" data-index="1" loading="lazy" decoding="async">
+                <img src="assets/img/custom_triangle_pendant.png" alt="Dije personalizado Medallón Triángulo Alado en plata ley 925" class="workshop-pendant-img" data-index="2" loading="lazy" decoding="async">
+                <img src="assets/img/custom_bandido_pendant.png" alt="Dije personalizado BANDIDO AL FIN iced-out en plata ley 925" class="workshop-pendant-img" data-index="3" loading="lazy" decoding="async">
+              </div>
+
+              <button type="button" class="workshop-carousel-arrow next" aria-label="Siguiente pieza" id="w-next"><i class="fa-solid fa-chevron-right"></i></button>
+
+              <div class="workshop-carousel-dots">
+                <span class="workshop-dot active" data-slide="0" aria-label="Dije BP"></span>
+                <span class="workshop-dot" data-slide="1" aria-label="Dije Geminis"></span>
+                <span class="workshop-dot" data-slide="2" aria-label="Dije Triángulo"></span>
+                <span class="workshop-dot" data-slide="3" aria-label="Dije Bandido Al Fin"></span>
+              </div>
+
+              <div class="workshop-img-badge" id="workshop-img-badge">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <span id="workshop-badge-text">Iniciales 'BP' a Medida</span>
+              </div>
+            </div>
+
+            <div class="workshop-visual-card">
+              <span style="font-size:11px; text-transform:uppercase; letter-spacing:0.14em; color:var(--gold-light); font-weight:800;">Garantía de Taller Frandhy Joyería</span>
+              <h3 style="font-family:var(--font-serif); font-size:24px; color:#fff; margin:8px 0 16px;">Calidad y Pureza Sin Compromisos</h3>
+              <p style="font-size:13.5px; color:var(--text-light-2); line-height:1.65;">
+                Cada pieza que sale de nuestro taller es verificada en balanza digital para certificar su peso exacto. Si requieres ajustes de medida en cadenas o guillos, lo realizamos directamente en nuestra tienda de Santiago.
+              </p>
+
+              <div style="margin-top:20px; display:flex; flex-direction:column; gap:12px;">
+                <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:#fff;">
+                  <i class="fa-solid fa-shield-check" style="color:var(--gold-light); font-size:16px;"></i>
+                  <span>Garantía de por vida en la pureza de la Plata Ley 925.</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:#fff;">
+                  <i class="fa-solid fa-sparkles" style="color:var(--gold-light); font-size:16px;"></i>
+                  <span>Mantenimiento y pulido a espejo gratuito para nuestros clientes.</span>
+                </div>
+                <div style="display:flex; align-items:center; gap:10px; font-size:13px; color:#fff;">
+                  <i class="fa-solid fa-scale-balanced" style="color:var(--gold-light); font-size:16px;"></i>
+                  <span>Video de pesaje en balanza digital previo a cada entrega.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================================================================
+         6. CONTACTO & UBICACIÓN EN SANTIAGO (WARM SILK CANVAS)
+         ================================================================== -->
+    <section class="section-contact" id="contacto">
+      <div class="container">
+        <div class="section-head fade-in">
+          <span class="section-tag">Visítanos en Nuestra Joyería</span>
+          <h2 class="section-title">Estamos en el Corazón de Santiago de los Caballeros</h2>
+          <p class="section-sub">Ven a conocer nuestras piezas en persona o comunícate directamente con nuestro equipo de orfebres.</p>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info-card fade-in">
+            <h3>Frandhy Joyería — "La Mina de Plata 925"</h3>
+            <p style="font-size:14px; color:var(--text-dark-2); line-height:1.6;">
+              Joyería física y taller orfebre en Santiago. Atendemos pedidos locales, nacionales para todas las provincias del país y envíos internacionales a Estados Unidos.
+            </p>
+
+            <div class="contact-list">
+              <div class="contact-item">
+                <div class="contact-item-icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div class="contact-item-text">
+                  <h5>Dirección</h5>
+                  <p>Calle 30 de Marzo, Plaza 30 de Marzo, Local B (Frente a Banfondesa), Santiago de los Caballeros, R.D.</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-item-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                <div class="contact-item-text">
+                  <h5>WhatsApp Principal</h5>
+                  <a href="https://wa.me/18293707605" target="_blank" rel="noopener" style="color:var(--gold); font-weight:800;">(829) 370-7605</a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-item-icon"><i class="fa-solid fa-phone"></i></div>
+                <div class="contact-item-text">
+                  <h5>Teléfono Secundario</h5>
+                  <a href="tel:8293797605" style="font-weight:600;">(829) 379-7605</a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-item-icon"><i class="fa-solid fa-clock"></i></div>
+                <div class="contact-item-text">
+                  <h5>Horario de Atención</h5>
+                  <p>Lunes a Sábado: 8:30 AM – 6:30 PM<br>Envíos a todo el país y USA en horario continuo.</p>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-item-icon"><i class="fa-brands fa-instagram"></i></div>
+                <div class="contact-item-text">
+                  <h5>Instagram Oficial</h5>
+                  <a href="https://www.instagram.com/frandhyjoyeria/" target="_blank" rel="noopener" style="color:var(--gold); font-weight:700;">@frandhyjoyeria</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="map-card-wrap fade-in">
+            <!-- Google Maps Embed centered on Calle 30 de Marzo, Santiago -->
+            <iframe 
+              class="map-iframe"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.6989649514656!2d-70.7042079!3d19.4503792!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8eb1cf6149a6e111%3A0x64c39f045bcf07cf!2sC.%2030%20de%20Marzo%2C%20Santiago%20De%20Los%20Caballeros!5e0!3m2!1ses!2sdo!4v1700000000000!5m2!1ses!2sdo"
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación Frandhy Joyería en Santiago de los Caballeros">
+            </iframe>
+            <div class="map-footer">
+              <span style="font-size:12.5px; color:var(--text-dark-2);"><i class="fa-solid fa-diamond-turn-right" style="color:var(--gold); margin-right:6px;"></i>Calle 30 de Marzo, Santiago</span>
+              <a href="https://maps.google.com/?q=Calle+30+de+Marzo+Santiago+de+los+Caballeros+Republica+Dominicana" target="_blank" rel="noopener" class="btn-card-wa" style="padding:6px 14px; font-size:12px;">
+                Abrir en Maps
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================================================================
+       FOOTER (ALTO CONTRASTE ESPRESSO & CRÉDITO CETU STUDIOS)
+       ==================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <div class="footer-logo-wrap">
+            <img src="assets/img/logo_frandhy.png" alt="Frandhy Joyería" class="footer-logo-img">
+            <div class="logo-brand-wrap">
+              <span class="logo-brand-title" style="font-size:22px;">FRANDHY</span>
+              <span class="logo-brand-subtitle">LA MINA DE PLATA 925</span>
+            </div>
+          </div>
+          <p>
+            "La Mina de Plata 925" en Santiago de los Caballeros. Especialistas en auténtica joyería italiana de alta ley con envíos asegurados a toda República Dominicana y Estados Unidos.
+          </p>
+          <div class="footer-socials">
+            <a href="https://www.instagram.com/frandhyjoyeria/" target="_blank" rel="noopener" class="social-icon-btn" aria-label="Instagram">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://wa.me/18293707605" target="_blank" rel="noopener" class="social-icon-btn" aria-label="WhatsApp">
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Colecciones 925</h4>
+          <ul class="footer-links">
+            <li><a href="#catalogo" onclick="window.FRANDHY_APP.filterByCategory('cadenas')">Cadenas de Plata 925</a></li>
+            <li><a href="#catalogo" onclick="window.FRANDHY_APP.filterByCategory('guillos')">Guillos &amp; Manillas</a></li>
+            <li><a href="#catalogo" onclick="window.FRANDHY_APP.filterByCategory('anillos')">Anillos &amp; Sellos Pavé</a></li>
+            <li><a href="#catalogo" onclick="window.FRANDHY_APP.filterByCategory('dijes')">Dijes &amp; Nombres Calados</a></li>
+            <li><a href="#catalogo" onclick="window.FRANDHY_APP.filterByCategory('sets')">Sets Exclusivos</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Enlaces Rápidos</h4>
+          <ul class="footer-links">
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#catalogo">Catálogo Completo</a></li>
+            <li><a href="#taller">Taller a Medida</a></li>
+            <li><a href="#contacto">Ubicación &amp; Contacto</a></li>
+            <li><a href="admin.html" target="_blank">Panel Administrativo</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contacto Directo</h4>
+          <ul class="footer-links">
+            <li><i class="fa-brands fa-whatsapp" style="color:var(--wa); margin-right:6px;"></i><a href="https://wa.me/18293707605" target="_blank" rel="noopener">(829) 370-7605</a></li>
+            <li><i class="fa-solid fa-phone" style="color:var(--gold-light); margin-right:6px;"></i><a href="tel:8293797605">(829) 379-7605</a></li>
+            <li><i class="fa-solid fa-location-dot" style="color:var(--gold-light); margin-right:6px;"></i><span>Plaza 30 de Marzo, Santiago</span></li>
+            <li><i class="fa-solid fa-clock" style="color:var(--gold-light); margin-right:6px;"></i><span>Lun–Sáb: 8:30AM – 6:30PM</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-inner">
+          <span>&copy; <span id="year-copy">2026</span> Frandhy Joyería &bull; "La Mina de Plata 925" &bull; RNC y Pureza Verificada</span>
+
+          <!-- CETU Studios Credit with Official Badge -->
+          <a href="https://instagram.com/cetustudios" target="_blank" rel="noopener" class="cetu-badge" title="Desarrollado por CETU Studios">
+            <span class="cetu-by">Desarrollado por</span>
+            <div class="cetu-brand-box">
+              <img src="assets/img/cetu-studios.png" alt="CETU Studios Logo" class="cetu-logo-img" loading="lazy" decoding="async">
+              <span class="cetu-text">CETU STUDIOS</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ====================================================================
+       PRODUCT DETAIL MODAL
+       ==================================================================== -->
+  <div class="modal-overlay" id="product-modal">
+    <div class="modal-dialog">
+      <button type="button" class="modal-close" id="modal-close-btn" aria-label="Cerrar modal">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <div class="modal-grid">
+        <div class="modal-img-box">
+          <img src="" id="modal-img" alt="Joya Frandhy Joyería">
+        </div>
+
+        <div class="modal-details">
+          <span class="modal-cat-tag" id="modal-cat">Plata 925</span>
+          <h2 class="modal-title" id="modal-title">Nombre de la Joya</h2>
+
+          <div class="modal-price-box">
+            <span class="modal-price" id="modal-price">RD$ 0</span>
+            <span class="modal-old-price" id="modal-old-price" style="display:none;">RD$ 0</span>
+          </div>
+
+          <div class="modal-specs-grid">
+            <div class="modal-spec-item">
+              <div class="modal-spec-label">Material</div>
+              <div class="modal-spec-val" id="modal-material">Plata Ley 925 Italiana Maciza</div>
+            </div>
+            <div class="modal-spec-item">
+              <div class="modal-spec-label">Peso Estimado</div>
+              <div class="modal-spec-val" id="modal-weight">Báscula Digital Verificada</div>
+            </div>
+            <div class="modal-spec-item">
+              <div class="modal-spec-label">Código / SKU</div>
+              <div class="modal-spec-val" id="modal-code">FJ-925</div>
+            </div>
+            <div class="modal-spec-item">
+              <div class="modal-spec-label">Disponibilidad</div>
+              <div class="modal-spec-val" id="modal-stock" style="color:#16a34a;">Listo para Entrega</div>
+            </div>
+          </div>
+
+          <p class="modal-desc" id="modal-desc">
+            Descripción de la joya forjada en el taller de orfebrería de Frandhy Joyería en Santiago de los Caballeros.
+          </p>
+
+          <div class="modal-actions">
+            <a href="#" id="modal-wa-btn" target="_blank" rel="noopener" class="btn-modal-wa">
+              <i class="fa-brands fa-whatsapp"></i> Pedir por WhatsApp
+            </a>
+            <button type="button" id="modal-add-bag-btn" class="btn-modal-bag">
+              <i class="fa-solid fa-bag-shopping"></i> Agregar a mi Bolsa
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ====================================================================
+       FLOATING WHATSAPP BUTTON
+       ==================================================================== -->
+  <a href="https://wa.me/18293707605?text=Hola%20Frandhy%20Joyer%C3%ADa,%20deseo%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20joyas%20en%20plata%20925." 
+     target="_blank" rel="noopener" class="floating-wa-btn" aria-label="Contactar por WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+
+  <!-- SCRIPTS -->
+  <script src="data.js"></script>
+  <script src="store.js"></script>
+  <script>
+    document.getElementById('year-copy').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

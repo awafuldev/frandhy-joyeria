@@ -67,6 +67,25 @@
     }
   }
 
+  // Luxury Toast Notification System
+  let toastTimeout = null;
+  function showToast(message, icon = 'fa-gem') {
+    let toast = document.getElementById('frandhy-toast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'frandhy-toast';
+      toast.className = 'frandhy-toast';
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<i class="fa-solid ${icon}"></i><span>${message}</span>`;
+    toast.classList.add('show');
+
+    if (toastTimeout) clearTimeout(toastTimeout);
+    toastTimeout = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2800);
+  }
+
   function saveCart(cart) {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
     updateCartUI();
@@ -74,16 +93,35 @@
 
   function addToCart(productId, qty = 1) {
     const store = window.FRANDHY_STORE || window.CRISTIAN_STORE;
-    if (!store) return;
+    if (!store) return false;
     const product = store.getProductById(productId);
-    if (!product) return;
+    if (!product) return false;
+
+    // Control estricto de Stock disponible
+    const maxStock = typeof product.stock === 'number' ? Math.max(0, product.stock) : 99;
+    if (maxStock <= 0) {
+      showToast('Esta joya se encuentra agotada en taller.', 'fa-circle-xmark');
+      return false;
+    }
 
     const cart = getCart();
     const existing = cart.find(item => String(item.id) === String(product.id));
 
     if (existing) {
-      existing.qty += qty;
+      if (existing.qty >= maxStock) {
+        showToast(maxStock === 1 ? '¡Solo queda 1 unidad disponible de esta joya!' : `Stock máximo alcanzado (${maxStock} disponibles).`, 'fa-triangle-exclamation');
+        openCartDrawer();
+        return false;
+      }
+      if (existing.qty + qty > maxStock) {
+        existing.qty = maxStock;
+        showToast(`Ajustado al máximo disponible (${maxStock} unid.).`, 'fa-triangle-exclamation');
+      } else {
+        existing.qty += qty;
+        showToast('Pieza agregada a tu bolsa de joyas.', 'fa-bag-shopping');
+      }
     } else {
+      const initialQty = Math.min(qty, maxStock);
       cart.push({
         id: product.id,
         nombre: product.nombre,
@@ -91,29 +129,50 @@
         precio: product.precio,
         imagen: product.imagen,
         material: product.material,
-        qty: qty
+        qty: initialQty
       });
+      showToast('Pieza agregada a tu bolsa de joyas.', 'fa-bag-shopping');
     }
 
     saveCart(cart);
     openCartDrawer();
+    return true;
   }
 
   function removeFromCart(productId) {
     let cart = getCart();
     cart = cart.filter(item => String(item.id) !== String(productId));
     saveCart(cart);
+    showToast('Pieza removida de tu bolsa.', 'fa-trash-can');
   }
 
   function updateItemQty(productId, delta) {
+    const store = window.FRANDHY_STORE || window.CRISTIAN_STORE;
     let cart = getCart();
     const item = cart.find(i => String(i.id) === String(productId));
     if (!item) return;
 
-    item.qty += delta;
-    if (item.qty <= 0) {
-      cart = cart.filter(i => String(i.id) !== String(productId));
+    // Validar contra el stock real en el inventario
+    const product = store ? store.getProductById(productId) : null;
+    const maxStock = product && typeof product.stock === 'number' ? Math.max(0, product.stock) : 99;
+
+    if (delta > 0) {
+      if (item.qty >= maxStock) {
+        showToast(maxStock === 1 ? '¡Solo queda 1 unidad disponible de esta joya exclusiva!' : `Stock máximo alcanzado (${maxStock} unidades disponibles).`, 'fa-triangle-exclamation');
+        return;
+      }
+      item.qty += delta;
+      if (item.qty > maxStock) item.qty = maxStock;
+    } else if (delta < 0) {
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => String(i.id) !== String(productId));
+        saveCart(cart);
+        showToast('Pieza removida de tu bolsa.', 'fa-trash-can');
+        return;
+      }
     }
+
     saveCart(cart);
   }
 
@@ -162,22 +221,48 @@
           </div>
         `;
       } else {
-        cartItemsWrap.innerHTML = cart.map(item => `
-          <div class="cart-item">
-            <img src="${item.imagen || 'assets/img/no-image.svg'}" alt="${item.nombre}" class="cart-item-img" onerror="this.src='assets/img/hero/cristian_hero_luxury.jpg'">
-            <div class="cart-item-info">
-              <h4 class="cart-item-title">${item.nombre}</h4>
-              <div class="cart-item-meta">${item.material || 'Plata Ley 925'}</div>
-              <div class="cart-item-price">${store.formatPrice(item.precio * item.qty)}</div>
-              <div class="cart-qty-stepper">
-                <button type="button" class="cart-qty-btn" onclick="window.FRANDHY_APP.updateItemQty('${item.id}', -1)" aria-label="Restar">-</button>
-                <span class="cart-qty-num">${item.qty}</span>
-                <button type="button" class="cart-qty-btn" onclick="window.FRANDHY_APP.updateItemQty('${item.id}', 1)" aria-label="Sumar">+</button>
+        cartItemsWrap.innerHTML = cart.map(item => {
+          const product = store ? store.getProductById(item.id) : null;
+          const maxStock = product && typeof product.stock === 'number' ? Math.max(0, product.stock) : 99;
+          const isMax = item.qty >= maxStock;
+          const isSingle = maxStock === 1;
+
+          let stockTag = '';
+          if (isMax && isSingle) {
+            stockTag = `<span class="cart-stock-tag warning"><i class="fa-solid fa-bolt"></i> ¡Única unidad disponible!</span>`;
+          } else if (isMax) {
+            stockTag = `<span class="cart-stock-tag max"><i class="fa-solid fa-lock"></i> Máx. en stock (${maxStock})</span>`;
+          } else if (isSingle) {
+            stockTag = `<span class="cart-stock-tag warning"><i class="fa-solid fa-bolt"></i> ¡Última unidad!</span>`;
+          }
+
+          return `
+            <div class="cart-item">
+              <img src="${item.imagen || 'assets/img/no-image.svg'}" alt="${item.nombre}" class="cart-item-img" onerror="this.src='assets/img/hero/cristian_hero_luxury.jpg'">
+              <div class="cart-item-info">
+                <h4 class="cart-item-title">${item.nombre}</h4>
+                <div class="cart-item-meta">${item.material || 'Plata Ley 925'}</div>
+                <div class="cart-item-price">${store.formatPrice(item.precio * item.qty)}</div>
+                
+                <div class="cart-item-bottom">
+                  <div class="cart-qty-stepper">
+                    <button type="button" class="cart-qty-btn minus" onclick="window.FRANDHY_APP.updateItemQty('${item.id}', -1)" aria-label="Restar cantidad" title="${item.qty === 1 ? 'Quitar joya de la bolsa' : 'Restar 1'}">
+                      <i class="fa-solid fa-minus" style="font-size:10px;"></i>
+                    </button>
+                    <span class="cart-qty-num">${item.qty}</span>
+                    <button type="button" class="cart-qty-btn plus ${isMax ? 'is-max' : ''}" onclick="window.FRANDHY_APP.updateItemQty('${item.id}', 1)" aria-label="Sumar cantidad" title="${isMax ? (isSingle ? 'Solo hay 1 unidad en taller' : 'Stock máximo alcanzado') : 'Sumar 1'}">
+                      <i class="fa-solid fa-plus" style="font-size:10px;"></i>
+                    </button>
+                  </div>
+                  ${stockTag}
+                </div>
               </div>
+              <button type="button" class="cart-remove-btn" onclick="window.FRANDHY_APP.removeFromCart('${item.id}')" aria-label="Eliminar ${item.nombre} de la bolsa" title="Quitar de la bolsa">
+                <i class="fa-solid fa-xmark"></i>
+              </button>
             </div>
-            <button type="button" class="cart-remove-btn" onclick="window.FRANDHY_APP.removeFromCart('${item.id}')" aria-label="Eliminar">&times;</button>
-          </div>
-        `).join('');
+          `;
+        }).join('');
       }
     }
 
@@ -286,13 +371,17 @@
 
     productsGrid.innerHTML = filtered.map(p => {
       const waUrl = getWhatsAppProductUrl(p);
+      const isOutOfStock = typeof p.stock === 'number' && p.stock <= 0;
+      const isSingleStock = p.stock === 1;
+
       return `
-        <article class="prod-card fade-in visible" data-id="${p.id}">
+        <article class="prod-card fade-in visible ${isOutOfStock ? 'is-out-of-stock' : ''}" data-id="${p.id}">
           <div class="prod-img-wrap" onclick="window.FRANDHY_APP.openProductModal('${p.id}')">
             <img src="${p.imagen || 'assets/img/custom_bp_pendant.jpg'}" alt="${p.nombre}" class="prod-img" loading="lazy" decoding="async" onerror="this.src='assets/img/hero/cristian_hero_luxury.jpg'">
             <div class="prod-badges-row">
               <span class="prod-badge-gold">PLATA 925</span>
               ${p.nuevo ? `<span class="prod-badge-gold" style="background:#16a34a; color:#fff;">NUEVO</span>` : ''}
+              ${isOutOfStock ? `<span class="prod-badge-gold" style="background:#dc2626; color:#fff; border-color:transparent;">AGOTADO</span>` : (isSingleStock ? `<span class="prod-badge-gold" style="background:#ea580c; color:#fff; border-color:transparent;"><i class="fa-solid fa-bolt" style="font-size:9px;"></i> ¡ÚLTIMA PIEZA!</span>` : '')}
             </div>
             <button type="button" class="prod-quick-btn" onclick="event.stopPropagation(); window.FRANDHY_APP.openProductModal('${p.id}')" aria-label="Vista rápida">
               <i class="fa-solid fa-eye"></i>
@@ -316,8 +405,8 @@
               <a href="${waUrl}" target="_blank" rel="noopener" class="btn-card-wa" title="Pedir por WhatsApp">
                 <i class="fa-brands fa-whatsapp"></i> <span>Pedir</span>
               </a>
-              <button type="button" class="btn-card-bag" onclick="window.FRANDHY_APP.addToCart('${p.id}')" title="Añadir a mi bolsa" aria-label="Añadir a bolsa">
-                <i class="fa-solid fa-bag-shopping"></i>
+              <button type="button" class="btn-card-bag ${isOutOfStock ? 'disabled' : ''}" onclick="window.FRANDHY_APP.addToCart('${p.id}')" title="${isOutOfStock ? 'Pieza Agotada' : 'Añadir a mi bolsa'}" aria-label="${isOutOfStock ? 'Agotado' : 'Añadir a bolsa'}" ${isOutOfStock ? 'disabled' : ''}>
+                <i class="fa-solid ${isOutOfStock ? 'fa-ban' : 'fa-bag-shopping'}"></i>
               </button>
             </div>
           </div>
@@ -376,7 +465,22 @@
     if (modalMaterial) modalMaterial.textContent = p.material || 'Plata Ley 925 Italiana Maciza';
     if (modalWeight) modalWeight.textContent = p.peso_aprox || 'Báscula Digital Verificada';
     if (modalCode) modalCode.textContent = p.codigo || 'FJ-925';
-    if (modalStock) modalStock.textContent = p.disponible ? 'Disponible en Tienda' : 'Bajo Confección';
+    const maxStock = typeof p.stock === 'number' ? Math.max(0, p.stock) : 99;
+    const isOutOfStock = maxStock <= 0;
+    const isSingleStock = maxStock === 1;
+
+    if (modalStock) {
+      if (isOutOfStock) {
+        modalStock.textContent = 'Agotado en Taller';
+        modalStock.style.color = '#dc2626';
+      } else if (isSingleStock) {
+        modalStock.textContent = '¡Última Pieza Disponible!';
+        modalStock.style.color = '#ea580c';
+      } else {
+        modalStock.textContent = p.disponible ? `Disponible (${maxStock} piezas en stock)` : 'Bajo Confección';
+        modalStock.style.color = '';
+      }
+    }
     if (modalDesc) modalDesc.textContent = p.descripcion_larga || p.descripcion_corta || 'Joya forjada en el taller de Frandhy Joyería en Santiago de los Caballeros.';
 
     if (modalWaBtn) {
@@ -384,10 +488,21 @@
     }
 
     if (modalAddBagBtn) {
-      modalAddBagBtn.onclick = function () {
-        addToCart(p.id, 1);
-        closeProductModal();
-      };
+      if (isOutOfStock) {
+        modalAddBagBtn.disabled = true;
+        modalAddBagBtn.style.opacity = '0.45';
+        modalAddBagBtn.style.cursor = 'not-allowed';
+        modalAddBagBtn.innerHTML = '<i class="fa-solid fa-ban"></i> <span>Pieza Agotada</span>';
+      } else {
+        modalAddBagBtn.disabled = false;
+        modalAddBagBtn.style.opacity = '';
+        modalAddBagBtn.style.cursor = '';
+        modalAddBagBtn.innerHTML = '<i class="fa-solid fa-bag-shopping"></i> <span>Agregar a mi Bolsa</span>';
+        modalAddBagBtn.onclick = function () {
+          addToCart(p.id, 1);
+          closeProductModal();
+        };
+      }
     }
 
     productModal.classList.add('open');
